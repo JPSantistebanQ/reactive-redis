@@ -22,8 +22,14 @@ Listar todas las llaves
 keys *
 ```
 
-TTL
+TTL: Time to live
 
 ```bash
 ttl key
+```
+
+Obtener el valor de una llave
+
+```bash
+get key
 ```
