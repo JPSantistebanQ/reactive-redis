@@ -39,3 +39,9 @@ COnfiguración notify-keyspace-events
 ```bash
 config set notify-keyspace-events KEA
 ```
+
+Eliminar una llave
+
+```bash
+del key
+```
