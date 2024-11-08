@@ -33,3 +33,9 @@ Obtener el valor de una llave
 ```bash
 get key
 ```
+
+COnfiguración notify-keyspace-events
+
+```bash
+config set notify-keyspace-events KEA
+```
