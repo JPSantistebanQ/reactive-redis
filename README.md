@@ -21,3 +21,9 @@ Listar todas las llaves
 ```bash
 keys *
 ```
+
+TTL
+
+```bash
+ttl key
+```

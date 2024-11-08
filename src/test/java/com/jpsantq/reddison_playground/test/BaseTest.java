@@ -20,4 +20,12 @@ public abstract class BaseTest {
     public void tearDown() {
         client.shutdown();
     }
+
+    protected void sleep(int seconds) {
+        try {
+            Thread.sleep(seconds * 1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 }
