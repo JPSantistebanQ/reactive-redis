@@ -2,6 +2,7 @@ package com.jpsantq.reddison_playground.test;
 
 import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.Test;
+import org.redisson.api.RDequeReactive;
 import org.redisson.api.RListReactive;
 import org.redisson.api.RQueueReactive;
 import org.redisson.client.codec.LongCodec;
@@ -29,7 +30,6 @@ class Lec09ListQueueStackTest extends BaseTest {
                 .verifyComplete();
     }
 
-
     @Test
     void queueTest() {
         RQueueReactive<Long> queue = client.getQueue("number-input", LongCodec.INSTANCE);
@@ -43,6 +43,23 @@ class Lec09ListQueueStackTest extends BaseTest {
                 .verifyComplete();
 
         StepVerifier.create(queue.size())
+                .expectNext(6)
+                .verifyComplete();
+    }
+
+    @Test
+    void stackTest() {
+        RDequeReactive<Long> deque = client.getDeque("number-input", LongCodec.INSTANCE);
+
+        Mono<Void> queuePool = deque.pollLast()
+                .repeat(3)
+                .doOnNext(log::info)
+                .then();
+
+        StepVerifier.create(queuePool)
+                .verifyComplete();
+
+        StepVerifier.create(deque.size())
                 .expectNext(6)
                 .verifyComplete();
     }
