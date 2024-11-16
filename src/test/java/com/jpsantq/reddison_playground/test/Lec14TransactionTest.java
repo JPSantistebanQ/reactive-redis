@@ -61,8 +61,8 @@ class Lec14TransactionTest extends BaseTest {
     @Test
     void transactionTest() {
         RTransactionReactive transaction = client.createTransaction(TransactionOptions.defaults());
-        RBucketReactive<Object> bucketT1 = transaction.getBucket("user:1:balance", LongCodec.INSTANCE);
-        RBucketReactive<Object> bucketT2 = transaction.getBucket("user:1:balance", LongCodec.INSTANCE);
+        RBucketReactive<Long> bucketT1 = transaction.getBucket("user:1:balance", LongCodec.INSTANCE);
+        RBucketReactive<Long> bucketT2 = transaction.getBucket("user:1:balance", LongCodec.INSTANCE);
 
         transfer(bucketT1, bucketT2, 50)
                 .thenReturn(0)
