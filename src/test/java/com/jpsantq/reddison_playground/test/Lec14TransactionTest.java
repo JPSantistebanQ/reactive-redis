@@ -68,7 +68,7 @@ class Lec14TransactionTest extends BaseTest {
                 .thenReturn(0)
                 .map(i -> 5 / i)
                 .then(transaction.commit())
-                .doOnError(ex -> transaction.rollback())
+                .onErrorResume(ex -> transaction.rollback())
                 .subscribe(); // * Forcing an error
 
         sleep(5);
